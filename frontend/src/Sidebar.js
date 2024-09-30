@@ -158,7 +158,7 @@ export default function Sidebar() {
             <Paper
               component="form"
               elevation={0}
-              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, border: 1, borderColor: '#E0E0E0' }}
+              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%", border: 1, borderColor: '#E0E0E0' }}
             >
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
@@ -180,14 +180,14 @@ export default function Sidebar() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                height: '100vh',
+                height: '100%',
                 '& .MuiDrawer-paper': {
                   backgroundColor: '#233044',
                   color: 'white',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  height: '100vh',
+                  height: '100%',
                 },
               }}>
         <Box>
@@ -209,7 +209,7 @@ export default function Sidebar() {
           <List sx={{ mt: 3 }}>
             {['Categorie', 'Compra', 'Vendi'].map((text, index) => {
               const icons = [<FilterListIcon />, <ShoppingCartIcon />, <PaymentIcon />];
-              const links = ['/categorie', '/compra', '/vendi'];
+              const links = ['/categorie', '/compra', '/nuova-asta'];
 
               return (
                 <ListItem key={text} disablePadding sx={{ display: 'block' }}>

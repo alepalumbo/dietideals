@@ -50,7 +50,7 @@ export default function BuyPage() {
     return (
         <div>
             <CssBaseline />
-            <Container maxWidth="full">
+            <Container maxWidth="xl">
                 <Box sx={{ bgcolor: 'background.paper', minHeight: '100vh', py: 4 }}>
                     <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
                         <Link

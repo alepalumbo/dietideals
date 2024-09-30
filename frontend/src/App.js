@@ -22,11 +22,11 @@ export default function App() {
       <Route path="/" element={<Sidebar />}>
         <Route exact path="/" element={<HomePage />} />
         <Route  path="/categorie" element={<Categories />} />
-        <Route  path="/vendi" element={<SellPage />} />
-        <Route  path="/vendi/astatempofisso" element={<FixedTimeAuction />} />
-        <Route  path="/vendi/astaribasso" element={<ReverseAuction />} />
+        <Route  path="/nuova-asta" element={<SellPage />} />
+        <Route  path="/nuova-asta/asta-a-tempo-fisso" element={<FixedTimeAuction />} />
+        <Route  path="/nuova-asta/asta-al-ribasso" element={<ReverseAuction />} />
         <Route  path="/compra" element={<BuyPage />} />
-        <Route  path="/profile" element={<Profile />} />
+        <Route  path="/profilo" element={<Profile />} />
         <Route  path="/editprofile" element={<EditProfile />} />
         <Route  path="/fixeddetail" element={<FixedDetail />} />
         <Route  path="/reversedetail" element={<ReverseDetail />} />
