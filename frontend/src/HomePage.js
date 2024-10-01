@@ -84,7 +84,7 @@ export default function HomePage() {
                             </Grid>
                         ))}
                     </Grid>
-                    <Grid container spacing={1} sx={{ m: 0, justifyContent: 'center'}}>
+                    <Grid container columnSpacing={16} sx={{ m: 0, justifyContent: 'left'}}>
                     {/* <Box sx={{ display: 'flex', m: 8, justifyContent: 'center' }}> */}
                         <Grid item key={1}>
                             <Box sx={{ width: 700, ...customStyles }}>

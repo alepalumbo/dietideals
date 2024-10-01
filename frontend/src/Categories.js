@@ -43,12 +43,25 @@ export default function Categories() {
             <Container maxWidth="xl">
                 <Box sx={{ minHeight: '100vh', py: 4 }}>
                     <div role="presentation" onClick={handleClick}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                            <Link underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit" href="/">                                
-                                <HomeIcon sx={{ mr: 0.5, color: '#1E88E5' }} fontSize='inherit'/>
-                                Home
-                            </Link>
-                        </Breadcrumbs>
+                            <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
+                                <Link
+                                    underline="hover"
+                                    sx={{ display: 'flex', alignItems: 'center' }}
+                                    color="inherit"
+                                    href="/"
+                                    onClick={handleClick}
+                                >
+                                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                                    Home
+                                </Link>
+                                <Typography
+                                    sx={{ display: 'flex', alignItems: 'center' }}
+                                    color="#1E88E5"
+                                >
+                                    <FilterListIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                                        Categorie
+                                </Typography>
+                            </Breadcrumbs>
                     </div>
                     <Typography variant="h4" sx={{ my: 1 }}>
                         Categorie

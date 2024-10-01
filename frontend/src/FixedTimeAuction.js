@@ -1,30 +1,13 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
+import { CssBaseline, Box, Container, Breadcrumbs, Link, Typography, TextField, Autocomplete, InputLabel, MenuItem, FormControl, Select, Button, Grid, Paper} from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home';
 import PaymentIcon from '@mui/icons-material/Payment';
-import Typography from '@mui/material/Typography';
 import Gavel from '@mui/icons-material/Gavel';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import Button from '@mui/material/Button';
-import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { UploadFile } from '@mui/icons-material';
 import { getCategories, createFixedTimeAuction } from './api/api';
+import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -120,8 +103,8 @@ export default function FixedTimeAuction() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="full">
-                <Box sx={{ bgcolor: 'white', height: '100vh' }}>
+            <Container maxWidth="xl">
+                <Box sx={{ bgcolor: 'white', height: '100%', py: 4 }}>
                     <Box>
                         <div role="presentation" onClick={handleClick}>
                             <Breadcrumbs aria-label="breadcrumb">
@@ -131,8 +114,8 @@ export default function FixedTimeAuction() {
                                     color="inherit"
                                     href="/"
                                 >
-                                    <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} />
-                                    <Typography variant="h6" color="disabled">Home</Typography>
+                                    <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
+                                    <Typography color="disabled">Home</Typography>
                                 </Link>
                                 <Link
                                     underline="hover"
@@ -140,8 +123,8 @@ export default function FixedTimeAuction() {
                                     color="inherit"
                                     href="/compra"
                                 >
-                                    <PaymentIcon sx={{ mr: 0.5, color: 'disabled' }} />
-                                    <Typography variant="h6" color="disabled">Compra</Typography>
+                                    <PaymentIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
+                                    <Typography  color="disabled">Vendi</Typography>
                                 </Link>
                                 <Link
                                     underline="hover"
@@ -149,47 +132,37 @@ export default function FixedTimeAuction() {
                                     color="inherit"
                                     href="/compra"
                                 >
-                                    <Gavel sx={{ mr: 0.5, color: '#1E88E5' }} />
-                                    <Typography variant="h6" color="#1E88E5">Asta a tempo fisso</Typography>
+                                    <Gavel sx={{ mr: 0.5, color: '#1E88E5' }} fontSize="inherit"/>
+                                    <Typography color="#1E88E5">Asta a tempo fisso</Typography>
                                 </Link>
                             </Breadcrumbs>
                         </div>
-                        <Typography variant="h4" sx={{ my: 1 }}>Asta a tempo fisso</Typography>
+                        <Typography variant="h4" sx={{ my: 2 }}>Asta a tempo fisso</Typography>
                     </Box>
-                    <Box sx={{ display: 'flex' }}>
-                        <Box sx={{ flex: 1 }}>
-                            <Box sx={{ m: 3 }}>
-                                <Typography variant="h6" sx={{ my: 1 }}>Titolo</Typography>
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& > :not(style)': { m: 1, width: '40ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Nome prodotto"
-                                        variant="outlined"
+                    <Grid container spacing={1} sx={{ my: 4, justifyContent: 'center' }}>
+                        <Grid item key={0} >
+                        <Paper elevation={0} sx={{p: 2, border: 1, borderColor: '#E0E0E0'}} >
+                            <Box sx={{width: '60ch'}}>
+                                <AuctionTitle name="Titolo"/>
+                                <AuctionField name="Titolo">                                        
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                    />
-                                </Box>
-                                <Typography variant="h6" sx={{ my: 1 }}>Descrizione breve</Typography>
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& > :not(style)': { m: 1, width: '40ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <TextField id="outlined-basic" label="Descrizione breve" variant="outlined" />
-                                </Box>
-                                <Typography variant="h6" sx={{ my: 1 }}>Foto</Typography>
-                                {/* Box di upload immagini */}
-                                <Box
+                                </AuctionField>  
+                                <AuctionTitle name="Descrizione breve"/> 
+                                <AuctionField name="Descrizione breve">
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                </AuctionField>                          
+                                <AuctionTitle name="Foto"/>
+                                <AuctionPhoto>
+                                    onChange={handleImageUpload}
+                                    {selectedImages.map((file, index) => (
+                                            <Typography key={index} variant="body2">
+                                                {file.name}
+                                            </Typography>
+                                        ))}
+                                </AuctionPhoto>
+                                {/* <Box
                                     sx={{
                                         border: '2px dashed #ccc',
                                         borderRadius: '8px',
@@ -224,96 +197,105 @@ export default function FixedTimeAuction() {
                                             </Typography>
                                         ))}
                                     </Box>
-                                </Box>
-                                <Typography variant="h6" sx={{ my: 1 }}>Descrizione dettagliata</Typography>
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { my: 3, width: '40ch', ml: 1 },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-                                        <TextField
-                                            id="outlined-multiline-static"
-                                            label="Descrizione"
-                                            multiline
-                                            rows={4}
-                                            defaultValue=""
-                                            value={description}
-                                            onChange={(e) => setDescription(e.target.value)}
-                                        />
-                                    </div>
-                                </Box>
+                                </Box> */}
+                                <AuctionTitle name="Descrizione dettagliata"/>
+                                <AuctionField name="Descrizione dettagliata" nrows={4}>
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                </AuctionField>
                             </Box>
-                        </Box>
-                        <Box sx={{ flexShrink: 0, width: '300px', mr: 20, my: 2 }}>
-                            <Typography variant="h6" sx={{ my: 1 }}>Prezzo iniziale</Typography>
-                            <FormControl sx={{ m: 1, width: '100%' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Prezzo</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    startAdornment={<InputAdornment position="start">€</InputAdornment>}
-                                    label="Prezzo"
-                                    type="number"
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
-                                />
-                            </FormControl>
-                            <Typography variant="h6" sx={{ my: 1 }}>Categoria e condizione</Typography>
-                            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', ml: 1 }}>
-                                {/* Autocomplete con le categorie dinamiche */}
-                                <Autocomplete
-                                    disablePortal
-                                    id="combo-box-categories"
-                                    options={categories.map((cat) => ({ label: cat.name }))}
-                                    sx={{ width: '20ch' }}
-                                    onChange={(event, newValue) => setSelectedCategory(newValue)} // Setta la categoria selezionata
-                                    renderInput={(params) => <TextField {...params} label="Categorie" />}
-                                />
-                                <Box sx={{ minWidth: '18ch' }}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Condizione</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={condition}
-                                            label="Condizione"
-                                            onChange={(e) => setCondition(e.target.value)}
-                                        >
-                                            <MenuItem value={'Nuovo'}>Nuovo</MenuItem>
-                                            <MenuItem value={'Usato'}>Usato</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Box>
-                            </Box>
-                            <Typography variant="h6" sx={{ my: 1 }}>Soglia minima</Typography>
-                            <FormControl sx={{ m: 1, width: '100%' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Soglia minima</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    startAdornment={<InputAdornment position="start">€</InputAdornment>}
-                                    type="number"
-                                    value={minPrice}
-                                    onChange={(e) => setMinPrice(e.target.value)}
-                                    label="Soglia minima"
-                                />
-                            </FormControl>
-                            <Typography variant="h6" sx={{ my: 1 }}>Tempo limite</Typography>
-                            <Box sx={{ width: '100%', m: 1 }}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DateTimePicker
-                                        label="Scegli data e ora"
+                            </Paper>
+                        </Grid>
+                        <Grid item key={1} >
+                            <Paper elevation={0} sx={{p: 2, border: 1, borderColor: '#E0E0E0'}} >
+                                <Box sx={{width: '60ch'}}>
+                                    <AuctionTitle name="Prezzo iniziale"/>
+                                    <AuctionPriceField name="Prezzo" />
+                                    <AuctionTitle name="Categoria e Condizione"/>
+                                    <Grid container columnSpacing={2} sx={{ justifyContent: 'left', ml: -1 }}>
+                                        <Grid item key={0}>
+
+                                        <Autocomplete
+                                                disablePortal
+                                                id="combo-box-categories"
+                                                options={categories.map((cat) => ({ label: cat.name }))}
+                                                sx={{ width: '20ch', bgcolor: '#42A5F5', borderRadius: 1,  boxShadow: 2, }}
+                                                onChange={(event, newValue) => setSelectedCategory(newValue)} // Setta la categoria selezionata
+                                                renderInput={(params) => <TextField {...params} label="Categorie" 
+                                                    variant='outlined'
+                                                    InputLabelProps={{
+                                                        sx: {
+                                                            color: 'white', // Label text color
+                                                        },
+                                                    }}
+                                                    InputProps={{
+                                                        ...params.InputProps,
+                                                        sx: {
+                                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                                border: "none", // Remove the border here
+                                                            },
+                                                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                                                border: "none", // Ensure no border on hover
+                                                            },
+                                                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                                                border: "none", // Ensure no border when focused
+                                                            },
+                                                            "& .MuiSvgIcon-root": {
+                                                                color: "white", // Set the icon color to white
+                                                            }
+                                                        }
+                                                    }}
+                                                />}
+                                            />
+                                        </Grid>
+                                        <Grid item key={1}>
+                                            <Box sx={{ minWidth: '18ch' }}>
+                                                <FormControl fullWidth sx={{width: '20ch', backgroundColor:'#42A5f5', borderRadius: 1, boxShadow: 2}}>
+                                                    <InputLabel id="demo-simple-select-label" sx={{color: 'white'}}>Condizione</InputLabel>
+                                                    <Select                                                        
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        value={condition}
+                                                        label="Condizione" 
+                                                        sx={{
+                                                            color: 'white', // Set the text color to white
+                                                            '& .MuiInputLabel-root': {
+                                                                color: 'white', // Set the label color to white
+                                                            },
+                                                            '& .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none', // Remove the border
+                                                            },
+                                                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none', // No border on hover
+                                                            },
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none', // No border when focused
+                                                            },
+                                                            '& .MuiSvgIcon-root': {
+                                                                color: 'white', // Set the dropdown arrow icon color to white
+                                                            }
+                                                         }}
+                                                        onChange={(e) => setCondition(e.target.value)}
+                                                    >
+                                                        <MenuItem value={'Nuovo'}>Nuovo</MenuItem>
+                                                        <MenuItem value={'Usato'}>Usato</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
+                                    <AuctionTitle name="Soglia minima"/>
+                                    <AuctionPriceField name="Soglia minima" />
+                                    <AuctionTitle name="Tempo limite"/>
+                                    <AuctionDatePicker>
                                         value={endTime}
-                                        onChange={(newValue) => setEndTime(newValue)}    
-                                    />
-                                    {console.log({endTime})}
-                                </LocalizationProvider>
-                            </Box>
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 10 }}>
+                                        onChange={(newValue) => setEndTime(newValue)} 
+                                    </AuctionDatePicker>                                    
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', my: 6 }}>
                         <Button 
                             variant="contained" 
                             sx={{ width: '100%', maxWidth: '400px', backgroundColor: '#2b3e5b' }}
