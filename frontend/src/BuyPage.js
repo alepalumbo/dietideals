@@ -29,22 +29,23 @@ import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { StyledBuyCard } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
 }
 
-const StyledCard = styled(Card)(({ theme }) => ({
-    maxWidth: 345,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    transition: 'transform 0.3s ease',
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
+// const StyledCard = styled(Card)(({ theme }) => ({
+//     maxWidth: 345,
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'space-between',
+//     transition: 'transform 0.3s ease',
+//     '&:hover': {
+//         transform: 'scale(1.05)',
+//     },
+// }));
 
 export default function BuyPage() {
     return (
@@ -76,7 +77,7 @@ export default function BuyPage() {
                     </Typography>
                     <Box sx={{ display: 'flex', py: 4 }}>
                         {/* Sidebar dei filtri */}
-                        <Box sx={{ width: 250 }}>
+                        <Box sx={{ width: '20vw' }}>
                             <Paper variant="outlined" sx={{ p: 2 }}>
                                 <Typography variant="h6" sx={{ mb: 2 }}>
                                     Categorie
@@ -105,18 +106,18 @@ export default function BuyPage() {
                                 <Typography variant="body1" sx={{ mt: 2 }}>
                                     Prezzo
                                 </Typography>
-                                <Box sx={{ width: 180, mt: 1 }}>
+                                <Box sx={{ mt: 1 }}>
                                     <TextField 
                                         label="min" 
                                         variant="outlined" 
                                         name="min"
-                                        sx={{ width: '70px', m: 1 }}
+                                        sx={{ width: '45%', mr: 1 }}
                                     />
                                     <TextField 
                                         label="max" 
                                         variant="outlined" 
                                         name="max"
-                                        sx={{ width: '70px', m: 1 }}
+                                        sx={{ width: '45%'}}
                                     />
                                 </Box>
                             </Paper>
@@ -124,36 +125,10 @@ export default function BuyPage() {
 
                         {/* Griglia di prodotti */}
                         <Box sx={{ flexGrow: 1, ml: 3 }}>
-                            <Grid container spacing={2}>
-                                {Array.from(Array(8)).map((_, index) => (
-                                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                                        <StyledCard>
-                                            <CardMedia
-                                                component="img"
-                                                height="140"
-                                                image="https://react.semantic-ui.com/images/wireframe/image-square.png"
-                                                alt="Product image"
-                                            />
-                                            <CardContent>
-                                                <Typography gutterBottom variant="h6" component="div">
-                                                    Nome Prodotto
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    Descrizione del prodotto. Questo è un testo segnaposto.
-                                                </Typography>
-                                                <Typography variant="caption" color="error" display="block" sx={{ mt: 1 }}>
-                                                    16H 22M
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions sx={{ justifyContent: 'space-between', px: 2 }}>
-                                                <Typography variant="h6">
-                                                    150,00 $
-                                                </Typography>
-                                                <Button variant="contained" color="primary" endIcon={<GavelIcon />}>
-                                                    BUY
-                                                </Button>
-                                            </CardActions>
-                                        </StyledCard>
+                            <Grid container spacing={2} columns={3} justifyContent={'center'}>
+                                {Array.from(Array(6)).map((_, index) => (
+                                    <Grid item  key={index}>
+                                        <StyledBuyCard name="Nome Prodotto" description="Descrizione prodotto" price="150.00 $"  time="12H 10M 10S"/>
                                     </Grid>
                                 ))}
                             </Grid>

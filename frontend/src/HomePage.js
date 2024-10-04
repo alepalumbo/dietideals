@@ -10,7 +10,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { StyledCard, CardTypography } from './styles';
+import { StyledCard  } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -71,15 +71,7 @@ export default function HomePage() {
                         {MenuVoices.map((menu, index) => (
                             <Grid item key={index}>
                                 <StyledLink to={`/${menu.name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                    <StyledCard variant="outlined" color={menu.backgroundColor}>
-                                        <Box sx={{ ml: 1, flex: 1 }}>
-                                            <Typography variant='h6'>{menu.name}</Typography>
-                                            <CardTypography >{menu.caption}</CardTypography>
-                                        </Box>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', ml: 2 }}>
-                                            {menu.icon}
-                                        </Box>
-                                    </StyledCard>
+                                    <StyledCard name={menu.name} caption={menu.caption} icon={menu.icon} color={menu.backgroundColor}/>                                        
                                 </StyledLink>
                             </Grid>
                         ))}

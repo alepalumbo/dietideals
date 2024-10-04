@@ -7,7 +7,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import Gavel from '@mui/icons-material/Gavel';
 import { UploadFile } from '@mui/icons-material';
 import { getCategories, createFixedTimeAuction } from './api/api';
-import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto } from './styles';
+import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -48,6 +48,15 @@ export default function FixedTimeAuction() {
         setSelectedImages((prevImages) => [...prevImages, ...files]);
     };
 
+    const isFormValid = () => {
+        return  title.trim() !== '' && // Titolo
+                price.trim() !== '' && // Prezzo
+                minPrice.trim() !== '' && // Soglia minima
+                selectedCategory !== null && // Categoria
+                description.trim() !== '' && // Descrizione
+                endTime !== null && // Tempo limite
+                condition.trim() !== ''; // Condizione
+    };
 
     const handleSubmit = async () => {
         if (isNaN(price) || isNaN(minPrice)) {
@@ -100,6 +109,8 @@ export default function FixedTimeAuction() {
         }
     };
 
+    
+
     return (
         <React.Fragment>
             <CssBaseline />
@@ -137,160 +148,39 @@ export default function FixedTimeAuction() {
                                 </Link>
                             </Breadcrumbs>
                         </div>
-                        <Typography variant="h4" sx={{ my: 2 }}>Asta a tempo fisso</Typography>
+                    <Typography variant="h4" sx={{ my: 2 }}>Asta a tempo fisso</Typography>
                     </Box>
                     <Grid container spacing={1} sx={{ my: 4, justifyContent: 'center' }}>
                         <Grid item key={0} >
                         <Paper elevation={0} sx={{p: 2, border: 1, borderColor: '#E0E0E0'}} >
                             <Box sx={{width: '60ch'}}>
-                                <AuctionTitle name="Titolo"/>
-                                <AuctionField name="Titolo">                                        
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                </AuctionField>  
-                                <AuctionTitle name="Descrizione breve"/> 
-                                <AuctionField name="Descrizione breve">
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
-                                </AuctionField>                          
-                                <AuctionTitle name="Foto"/>
-                                <AuctionPhoto>
-                                    onChange={handleImageUpload}
-                                    {selectedImages.map((file, index) => (
-                                            <Typography key={index} variant="body2">
-                                                {file.name}
-                                            </Typography>
-                                        ))}
-                                </AuctionPhoto>
-                                {/* <Box
-                                    sx={{
-                                        border: '2px dashed #ccc',
-                                        borderRadius: '8px',
-                                        padding: '16px',
-                                        textAlign: 'center',
-                                        cursor: 'pointer',
-                                        width: '40ch',
-                                        m: 1
-                                    }}
-                                >
-                                    <input
-                                        accept="image/*"
-                                        id="upload-images"
-                                        type="file"
-                                        multiple
-                                        style={{ display: 'none' }}
-                                        onChange={handleImageUpload}
-                                    />
-                                    <label htmlFor="upload-images">
-                                        <Button
-                                            variant="outlined"
-                                            component="span"
-                                            startIcon={<UploadFile />}
-                                        >
-                                            Carica Immagini
-                                        </Button>
-                                    </label>
-                                    <Box>
-                                        {selectedImages.map((file, index) => (
-                                            <Typography key={index} variant="body2">
-                                                {file.name}
-                                            </Typography>
-                                        ))}
-                                    </Box>
-                                </Box> */}
-                                <AuctionTitle name="Descrizione dettagliata"/>
-                                <AuctionField name="Descrizione dettagliata" nrows={4}>
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                </AuctionField>
+                                <AuctionTitle title="Titolo"/>
+                                <AuctionField name="Titolo" value={title} onChange={(e) => setTitle(e.target.value)}/>                                                        
+                                <AuctionTitle title="Foto"/>
+                                <AuctionPhoto handleImageUpload={handleImageUpload} selectedImages={selectedImages}/>                              
+                                <AuctionTitle title="Descrizione dettagliata"/>
+                                <AuctionField name="Descrizione dettagliata" nrows={4} value={description} onChange={(e) => setDescription(e.target.value)}/>                                 
                             </Box>
                             </Paper>
                         </Grid>
                         <Grid item key={1} >
                             <Paper elevation={0} sx={{p: 2, border: 1, borderColor: '#E0E0E0'}} >
                                 <Box sx={{width: '60ch'}}>
-                                    <AuctionTitle name="Prezzo iniziale"/>
-                                    <AuctionPriceField name="Prezzo" />
-                                    <AuctionTitle name="Categoria e Condizione"/>
+                                    <AuctionTitle title="Prezzo iniziale" />
+                                    <AuctionPriceField name="Prezzo" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                                    <AuctionTitle title="Categoria e Condizione"/>
                                     <Grid container columnSpacing={2} sx={{ justifyContent: 'left', ml: -1 }}>
                                         <Grid item key={0}>
-
-                                        <Autocomplete
-                                                disablePortal
-                                                id="combo-box-categories"
-                                                options={categories.map((cat) => ({ label: cat.name }))}
-                                                sx={{ width: '20ch', bgcolor: '#42A5F5', borderRadius: 1,  boxShadow: 2, }}
-                                                onChange={(event, newValue) => setSelectedCategory(newValue)} // Setta la categoria selezionata
-                                                renderInput={(params) => <TextField {...params} label="Categorie" 
-                                                    variant='outlined'
-                                                    InputLabelProps={{
-                                                        sx: {
-                                                            color: 'white', // Label text color
-                                                        },
-                                                    }}
-                                                    InputProps={{
-                                                        ...params.InputProps,
-                                                        sx: {
-                                                            "& .MuiOutlinedInput-notchedOutline": {
-                                                                border: "none", // Remove the border here
-                                                            },
-                                                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                                                                border: "none", // Ensure no border on hover
-                                                            },
-                                                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                                                border: "none", // Ensure no border when focused
-                                                            },
-                                                            "& .MuiSvgIcon-root": {
-                                                                color: "white", // Set the icon color to white
-                                                            }
-                                                        }
-                                                    }}
-                                                />}
-                                            />
+                                            <AuctionAutoC categories={categories} setSelectedCategory={setSelectedCategory} />
                                         </Grid>
                                         <Grid item key={1}>
-                                            <Box sx={{ minWidth: '18ch' }}>
-                                                <FormControl fullWidth sx={{width: '20ch', backgroundColor:'#42A5f5', borderRadius: 1, boxShadow: 2}}>
-                                                    <InputLabel id="demo-simple-select-label" sx={{color: 'white'}}>Condizione</InputLabel>
-                                                    <Select                                                        
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
-                                                        value={condition}
-                                                        label="Condizione" 
-                                                        sx={{
-                                                            color: 'white', // Set the text color to white
-                                                            '& .MuiInputLabel-root': {
-                                                                color: 'white', // Set the label color to white
-                                                            },
-                                                            '& .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none', // Remove the border
-                                                            },
-                                                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none', // No border on hover
-                                                            },
-                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none', // No border when focused
-                                                            },
-                                                            '& .MuiSvgIcon-root': {
-                                                                color: 'white', // Set the dropdown arrow icon color to white
-                                                            }
-                                                         }}
-                                                        onChange={(e) => setCondition(e.target.value)}
-                                                    >
-                                                        <MenuItem value={'Nuovo'}>Nuovo</MenuItem>
-                                                        <MenuItem value={'Usato'}>Usato</MenuItem>
-                                                    </Select>
-                                                </FormControl>
-                                            </Box>
+                                            <AuctionFormC condition={condition} setCondition={setCondition} />
                                         </Grid>
                                     </Grid>
-                                    <AuctionTitle name="Soglia minima"/>
-                                    <AuctionPriceField name="Soglia minima" />
-                                    <AuctionTitle name="Tempo limite"/>
-                                    <AuctionDatePicker>
-                                        value={endTime}
-                                        onChange={(newValue) => setEndTime(newValue)} 
-                                    </AuctionDatePicker>                                    
+                                    <AuctionTitle title="Soglia minima"/>
+                                    <AuctionPriceField name="Soglia minima" value={minPrice} onChange={(e) => setMinPrice(e.target.value)}/>
+                                    <AuctionTitle title="Tempo limite"/>
+                                    <AuctionDatePicker value={endTime} onChange={(newValue) => setEndTime(newValue)} />                                  
                                 </Box>
                             </Paper>
                         </Grid>
@@ -300,6 +190,7 @@ export default function FixedTimeAuction() {
                             variant="contained" 
                             sx={{ width: '100%', maxWidth: '400px', backgroundColor: '#2b3e5b' }}
                             onClick={handleSubmit}
+                            disabled={!isFormValid()} // Disabilita il pulsante se il form non è valido
                         >
                         AGGIUNGI ASTA
                         </Button>

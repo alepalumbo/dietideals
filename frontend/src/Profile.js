@@ -53,41 +53,37 @@ export default function ProfilePage() {
   console.log(userProfile);
 
   return (
-    <Container maxWidth="lg" sx={{ py: 5 }}>
+    <Container maxWidth="xl">
+      <Box sx={{ bgcolor: 'background.paper', minHeight: '100vh', py: 4 }}>
         <div role="presentation" onClick={handleClick}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                            <Link
-                                underline="hover"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                                href="/"
-                            >
-                                <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} />
-                                <Typography variant="h6" color="disabled">
-                                    Home
-                                </Typography>
-                            </Link>
-                            <Link
-                                underline="hover"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                                href="/compra"
-                            >
-                                <PersonIcon sx={{ mr: 0.5, color: '#1E88E5' }} />
-                                <Typography variant="h6" color="#1E88E5">
-                                    Profilo
-                                </Typography>
-                            </Link>
-                        </Breadcrumbs>
-                    </div>
-                    <Typography variant="h4" sx={{ my: 1 }}>
-                        Profilo
-                    </Typography>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link
+                underline="hover"
+                sx={{ display: 'flex', alignItems: 'center' }}
+                color="inherit"
+                href="/"
+            >
+                <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
+                <Typography color="disabled">Home</Typography>
+            </Link>
+            <Typography
+              sx={{ display: 'flex', alignItems: 'center' }}
+              color="#1E88E5"
+            >
+              <PersonIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              Profilo
+            </Typography>
+        </Breadcrumbs>
+        </div>
+      <Typography variant="h4" sx={{ my: 1 }}>
+          Profilo
+      </Typography>
     <CssBaseline />
-      <Grid container spacing={4}>
+      <Grid container spacing={4} justifyContent="center" sx={{ mt: 1}}>
         {/* Sidebar sinistra */}
-        <Grid item xs={12} md={4}>
-          <Paper elevation={3} sx={{ p: 3, textAlign: 'center' }}>
+        <Grid item key={0}>
+          <Box sx={{ width: '30ch' }}>
+          <Paper variant="outlined" sx={{ p: 3, textAlign: 'center' }}>
             <Avatar 
               alt="avatar" 
               src={userProfile.profilePictureUrl} 
@@ -102,11 +98,11 @@ export default function ProfilePage() {
             <Box sx={{ textAlign: 'left', pl: 2 }}>
               <Typography variant="subtitle1" gutterBottom>Informazioni</Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <HomeIcon fontSize="small" sx={{ mr: 1 }} />
+                <HomeIcon fontSize="small" sx={{ mr: 1, color: '#757575' }} />
                 <Typography variant="body2">{userProfile.location}</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <InfoIcon fontSize="small" sx={{ mr: 1 }} />
+                <InfoIcon fontSize="small" sx={{ mr: 1, color: '#757575' }} />
                 <Typography variant="body2">Iscritto dal : {userProfile.createdAt}</Typography>
               </Box>
 
@@ -114,24 +110,26 @@ export default function ProfilePage() {
 
               <Typography variant="subtitle1" gutterBottom>Contatti</Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <PhoneIcon fontSize="small" sx={{ mr: 1 }} />
+                <PhoneIcon fontSize="small" sx={{ mr: 1, color: '#757575' }} />
                 <Typography variant="body2">{userProfile.phoneNumber}</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <GoogleIcon fontSize="small" sx={{ mr: 1 }} />
+                <GoogleIcon fontSize="small" sx={{ mr: 1, color: '#757575' }} />
                 <Typography variant="body2">{userProfile.email}</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <InstagramIcon fontSize="small" sx={{ mr: 1 }} />
+                <InstagramIcon fontSize="small" sx={{ mr: 1, color: '#757575' }} />
                 <Typography variant="body2">@{userProfile.fullname}</Typography>
               </Box>
             </Box>
           </Paper>
+          </Box>
         </Grid>
 
         {/* Sezione dei dettagli */}
-        <Grid item xs={12} md={8}>
-          <Paper elevation={3} sx={{ p: 3 }}>
+        <Grid item key={1}>
+        <Box sx={{ width: '90ch' }}>
+          <Paper variant="outlined" sx={{ p: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="h6">Dettagli</Typography>
               <Box>
@@ -154,7 +152,7 @@ export default function ProfilePage() {
 
             {/* About me */}
             <Typography variant="subtitle1" gutterBottom>Su di me</Typography>
-            <Typography variant="body2" paragraph>
+            <Typography variant="body2" sx={{color: '#757575'}} paragraph>
                 {userProfile.bio}
             </Typography>
             <Typography variant="caption" gutterBottom>Website: </Typography>
@@ -165,29 +163,31 @@ export default function ProfilePage() {
             <Typography variant="subtitle1" gutterBottom>Dettagli personali</Typography>
             <Grid container spacing={2} sx={{ mb: 2 }}>
               <Grid item xs={6}>
-                <Typography variant="body2"><strong>{userProfile.fullname}</strong></Typography>
-                <Typography variant="body2">John Herbert Smith</Typography>
+                <Typography variant="body2" sx={{color: '#757575'}}>Nome Completo</Typography>
+                <Typography variant="body2">{userProfile.fullname}</Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="body2"><strong>Città</strong></Typography>
+                <Typography variant="body2"sx={{color: '#757575'}}>Città</Typography>
                 <Typography variant="body2">{userProfile.location}</Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="body2"><strong>Indirizzo</strong></Typography>
+                <Typography variant="body2" sx={{color: '#757575'}}>Indirizzo</Typography>
                 <Typography variant="body2">{userProfile.address}</Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="body2"><strong>Zip Code</strong></Typography>
+                <Typography variant="body2" sx={{color: '#757575'}}>Zip Code</Typography>
                 <Typography variant="body2">{userProfile.zipCode}</Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="body2"><strong>Email</strong></Typography>
+                <Typography variant="body2" sx={{color: '#757575'}}>Email</Typography>
                 <Typography variant="body2">{userProfile.email}</Typography>
               </Grid>
             </Grid>
           </Paper>
+          </Box>
         </Grid>
       </Grid>
+      </Box>
     </Container>
   );
 }

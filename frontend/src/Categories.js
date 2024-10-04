@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonIcon from '@mui/icons-material/Person';
 import GavelIcon from '@mui/icons-material/Gavel';
-import { StyledCard, CardTypography } from './styles';
+import { StyledCard  } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -19,11 +19,11 @@ const StyledLink = styled(RouterLink)({
 });
 
 const categoryTypes = [
-    { name: 'Elettronica', caption: 'Roba di elettronica', icon: <AddIcon />, backgroundColor: '#1E88E5' },
-    { name: 'TV, audio e video', caption: 'Roba di TV, audio e video', icon: <FilterListIcon />, backgroundColor: '#00ACC1' },
-    { name: 'Articoli da collezione', caption: 'Roba di collezione', icon: <PersonIcon />, backgroundColor: '#FB8C00' },
-    { name: 'Strumenti musicali', caption: 'Roba di Strumenti musicali', icon: <GavelIcon />, backgroundColor: '#52C41A' },
-    { name: 'Elettrodomestici', caption: 'Roba di Elettrodomestici', icon: <AddIcon />, backgroundColor: '#617371' },
+    { name: 'Elettronica', caption: 'Roba di elettronica', icon: '', backgroundColor: '#1E88E5' },
+    { name: 'TV, audio e video', caption: 'Roba di TV, audio e video', icon: '', backgroundColor: '#00ACC1' },
+    { name: 'Articoli da collezione', caption: 'Roba di collezione', icon: '', backgroundColor: '#FB8C00' },
+    { name: 'Strumenti musicali', caption: 'Roba di Strumenti musicali', icon: '', backgroundColor: '#52C41A' },
+    { name: 'Elettrodomestici', caption: 'Roba di Elettrodomestici',    icon: '', backgroundColor: '#617371' },
     { name: 'Sport e viaggi', caption: 'Roba di Sport e viaggi', icon: <FilterListIcon />, backgroundColor: '#9C27B0' },
     { name: 'Articoli per giardinaggio', caption: 'Roba di Articoli per giardinaggio', icon: <PersonIcon />, backgroundColor: '#3F51B5' },
     { name: 'Musica, CD e Vinili', caption: 'Roba di Musica, CD e Vinili', icon: <GavelIcon />, backgroundColor: '#FFC107' },
@@ -70,15 +70,7 @@ export default function Categories() {
                         {categoryTypes.map((auction, index) => (
                             <Grid item key={index}>
                                 <StyledLink to={`/vendi/${auction.name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                    <StyledCard variant="outlined" color={auction.backgroundColor}>
-                                        <Box sx={{ ml: 1, flex: 1 }}>
-                                            <Typography variant='h6'>{auction.name}</Typography>
-                                            <CardTypography >{auction.caption}</CardTypography>
-                                        </Box>
-                                        {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48 }}>
-                                            {auction.icon}
-                                        </Box> */}
-                                    </StyledCard>
+                                    <StyledCard name={auction.name} caption={auction.caption} icon={''} color={auction.backgroundColor}/>
                                 </StyledLink>
                             </Grid>
                         ))}
