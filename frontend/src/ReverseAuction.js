@@ -27,7 +27,7 @@ import { getCategories, createDescendingAuction } from './api/api';
 import { Grid, Paper } from '@mui/material';
 import { UploadFile } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC } from './styles';
+import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink } from './styles';
 
 
 function handleClick(event) {
@@ -150,34 +150,10 @@ export default function ReverseAuction() {
                 <Box sx={{ bgcolor: 'white', height: '100%', py: 4}}>
                     <Box>
                         <div role="presentation" onClick={handleClick}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/"
-                                >
-                                    <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
-                                    <Typography color="disabled">Home</Typography>
-                                </Link>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/compra"
-                                >
-                                    <PaymentIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
-                                    <Typography  color="disabled">Vendi</Typography>
-                                </Link>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/compra"
-                                >
-                                    <Gavel sx={{ mr: 0.5, color: '#1E88E5' }} fontSize="inherit"/>
-                                    <Typography color="#1E88E5">Asta al ribasso</Typography>
-                                </Link>
+                            <Breadcrumbs aria-label="breadcrumb">
+                                <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                                <BreadcrumbLink isActive={false} label={"Vendi"} Icon={PaymentIcon}/>
+                                <BreadcrumbLink isActive={true} label={"Asta al ribasso"} Icon={Gavel}/>
                             </Breadcrumbs>
                         </div>
                         <Typography variant="h4" sx={{ my: 1 }}>
@@ -219,7 +195,7 @@ export default function ReverseAuction() {
                                     <Box sx={{ width: 300 }}>
                                         <Slider
                                             aria-label="Timer"
-                                            defaultValue={1}
+                                            defaultValue={2}
                                             getAriaValueText={valuetext}
                                             step={null}
                                             valueLabelDisplay="auto"

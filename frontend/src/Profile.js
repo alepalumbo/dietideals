@@ -12,6 +12,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import PersonIcon from '@mui/icons-material/Person';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { getUserProfile } from './api/api';
+import { BreadcrumbLink } from './styles';
 import UserProfile from './UserProfile';
 
 
@@ -57,22 +58,8 @@ export default function ProfilePage() {
       <Box sx={{ bgcolor: 'background.paper', minHeight: '100vh', py: 4 }}>
         <div role="presentation" onClick={handleClick}>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link
-                underline="hover"
-                sx={{ display: 'flex', alignItems: 'center' }}
-                color="inherit"
-                href="/"
-            >
-                <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
-                <Typography color="disabled">Home</Typography>
-            </Link>
-            <Typography
-              sx={{ display: 'flex', alignItems: 'center' }}
-              color="#1E88E5"
-            >
-              <PersonIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Profilo
-            </Typography>
+            <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+            <BreadcrumbLink isActive={true} label={"Profilo"} Icon={PersonIcon}/>
         </Breadcrumbs>
         </div>
       <Typography variant="h4" sx={{ my: 1 }}>
