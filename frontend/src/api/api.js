@@ -74,3 +74,13 @@ export const getCategories = async () => {
       throw error;
   }
 };
+
+export const getAuctionDetails = async (auctionId) => {
+  try {
+      const response = await axios.get(`/api/auctions/${auctionId}`);
+      return response.data;
+  } catch (error) {
+      console.error('Errore nel recupero dei dettagli dell\'asta:', error);
+      throw error;
+  }
+};
