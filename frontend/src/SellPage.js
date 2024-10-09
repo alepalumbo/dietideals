@@ -19,7 +19,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import chroma from 'chroma-js';
-import { StyledCard } from './styles';
+import { StyledCard, BreadcrumbLink } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -47,23 +47,8 @@ export default function SellPage() {
                 <Box sx={{ minHeight: '100vh', py: 4 }}>
                 <div role="presentation" onClick={handleClick}>                            
                             <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/"
-                                    onClick={handleClick}
-                                >
-                                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                    Home
-                                </Link>
-                                <Typography
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="#1E88E5"
-                                >
-                                    <PaymentIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                        Vendi
-                                </Typography>
+                                <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                                <BreadcrumbLink isActive={true} label={"Vendi"} Icon={PaymentIcon}/> 
                             </Breadcrumbs>
                         </div>
                     <Typography variant="h4" sx={{ my: 1 }}>

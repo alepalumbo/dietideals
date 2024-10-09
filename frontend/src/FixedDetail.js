@@ -22,6 +22,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import AlertDialogSlide from './AlertDialogSlide';
+import { BreadcrumbLink } from './styles';
+
 
 function handleClick(event) {
     event.preventDefault();
@@ -108,39 +110,9 @@ export default function FixedDetail() {
                 <Box sx={{ minHeight: '150vh', py: 4, width: '100%' }}>
                     <div role="presentation" onClick={handleClick}>
                         <Breadcrumbs aria-label="breadcrumb">
-                            <Link
-                                underline="hover"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                                href="/"
-                            >
-                                <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} />
-                                <Typography variant="h6" color="disabled">
-                                    Home
-                                </Typography>
-                            </Link>
-                            <Link
-                                underline="hover"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                                href="/compra"
-                            >
-                                <ShoppingCartIcon sx={{ mr: 0.5, color: 'disabled' }} />
-                                <Typography variant="h6" color="disabled">
-                                    Compra
-                                </Typography>
-                            </Link>
-                            <Link
-                                underline="hover"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                                href="/compra"
-                            >
-                                <InfoIcon sx={{ mr: 0.5, color: '#1E88E5' }} />
-                                <Typography variant="h6" color="#1E88E5">
-                                    Prodotto
-                                </Typography>
-                            </Link>
+                            <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                            <BreadcrumbLink isActive={false} label={"Compra"} Icon={ShoppingCartIcon}/>
+                            <BreadcrumbLink isActive={true} label={"Prodotto"} Icon={InfoIcon}/>                         
                         </Breadcrumbs>
                     </div>
                     <Box sx={{ display: 'flex', alignItems: 'center', my: 3, mb: 5 }}>
