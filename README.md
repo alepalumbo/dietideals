@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DietiDeals24
 
 ## Descrizione
@@ -34,6 +33,3 @@ DietiDeals24 è una web app per la creazione e gestione di aste online. Sviluppa
    ```bash
    git clone https://github.com/tuo-username/DietiDeals24.git
    cd DietiDeals24
-=======
-# dietideals
->>>>>>> 5798fe500cc2cd39965a47509ce2771b7aadd63e
