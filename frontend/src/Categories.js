@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonIcon from '@mui/icons-material/Person';
 import GavelIcon from '@mui/icons-material/Gavel';
-import { StyledCard  } from './styles';
+import { StyledCard, BreadcrumbLink } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -44,23 +44,8 @@ export default function Categories() {
                 <Box sx={{ minHeight: '100vh', py: 4 }}>
                     <div role="presentation" onClick={handleClick}>
                             <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/"
-                                    onClick={handleClick}
-                                >
-                                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                    Home
-                                </Link>
-                                <Typography
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="#1E88E5"
-                                >
-                                    <FilterListIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                        Categorie
-                                </Typography>
+                                <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                                <BreadcrumbLink isActive={true} label={"Categorie"} Icon={FilterListIcon}/>                             
                             </Breadcrumbs>
                     </div>
                     <Typography variant="h4" sx={{ my: 1 }}>

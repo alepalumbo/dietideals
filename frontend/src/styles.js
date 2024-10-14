@@ -1,31 +1,12 @@
-import { Card, Typography, Box, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Button, CardMedia, CardContent, CardActions, Autocomplete, Select, MenuItem} from '@mui/material';
+import { Card, Typography, Box, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Button, CardMedia, CardContent, CardActions, Autocomplete, Select, MenuItem, Link} from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { UploadFile } from '@mui/icons-material';
 import GavelIcon from '@mui/icons-material/Gavel';
-import { styled } from '@mui/material/styles';
 import chroma from 'chroma-js';
 
 const getDarkerColor = (color) => chroma(color).shade(0.25).hex();
-
-// const StyledCard = styled(Card)(({ color }) => ({
-//     width: 324,
-//     height: 120,
-//     padding: '16px',
-//     border: 'none',
-//     display: 'flex',
-//     alignItems: 'center',
-//     transition: 'background-color 0.3s ease, transform 0.3s ease',
-//     backgroundColor: color,
-//     color: 'white',
-//     '&:hover': {
-//         backgroundColor: getDarkerColor(color),
-//         transform: 'scale(1.05)',
-//     },
-//     textAlign: 'left',
-//     overflow: 'hidden',
-// }));
 
 const StyledCard = ({color, name, caption, icon}) => (
     <Card variant="outlined"
@@ -280,4 +261,67 @@ const AuctionFormC = ({condition, setCondition}) => (
     </Box>
 )
 
-export { StyledCard,  AuctionTitle, AuctionField, AuctionPriceField, AuctionDatePicker, AuctionPhoto, StyledBuyCard, AuctionAutoC, AuctionFormC};
+function CustomSelect({ label, menuItems, onValue, setValue }) {
+    return (
+        <FormControl fullWidth sx={{width: '20ch', backgroundColor:'#42A5f5', borderRadius: 1, boxShadow: 2}}>
+            <Select
+                value={onValue}
+                onChange={(e) => setValue(e.target.value)}
+                displayEmpty
+                sx={{
+                    color: 'white',
+                    '& .MuiInputLabel-root': {
+                        color: 'white',
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        border: 'none',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                        border: 'none',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        border: 'none',
+                    },
+                    '& .MuiSvgIcon-root': {
+                        color: 'white',
+                    }
+                    }}
+            >
+            <MenuItem value="">
+                <em>{label}</em>
+            </MenuItem>
+            {menuItems.map((m, i) => (
+                            <MenuItem key={i} value={m}> {m}</MenuItem>
+            ))}
+            </Select>
+        </FormControl>
+    );
+}
+
+function BreadcrumbLink({ isActive, label, Icon }) {
+    if(isActive) {
+        return (
+        <Typography
+            sx={{ display: 'flex', alignItems: 'center' }}
+            color="#1E88E5"
+        >
+        <Icon sx={{ mr: 0.5 }} fontSize="inherit" />
+            {label}
+        </Typography>);
+    } else {
+        return (
+            <Link
+                underline="hover"
+                sx={{ display: 'flex', alignItems: 'center' }}
+                color="inherit"
+                href="#"
+            >
+                <Icon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
+                <Typography  color="disabled">{label}</Typography>
+            </Link>
+        );
+    }
+}
+
+
+export { StyledCard,  AuctionTitle, AuctionField, AuctionPriceField, AuctionDatePicker, AuctionPhoto, StyledBuyCard, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect};

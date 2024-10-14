@@ -10,7 +10,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { StyledCard  } from './styles';
+import { StyledCard, BreadcrumbLink  } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
@@ -55,13 +55,7 @@ export default function HomePage() {
                 <Box sx={{ py: 4}}>
                     <div role="presentation" onClick={handleClick}>
                         <Breadcrumbs aria-label="breadcrumb">
-                            <Link
-                                underline="none"
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                                color="inherit"
-                            >
-                                <HomeIcon sx={{ mr: 0.5, color: '#1E88E5' }} fontSize='inherit' />
-                            </Link>
+                            <BreadcrumbLink isActive={true} label={"Home"} Icon={HomeIcon}/>
                         </Breadcrumbs>
                     </div>
                     <Typography variant="h4" sx={{ my: 1 }}>

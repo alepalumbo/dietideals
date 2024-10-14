@@ -7,7 +7,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import Gavel from '@mui/icons-material/Gavel';
 import { UploadFile } from '@mui/icons-material';
 import { getCategories, createFixedTimeAuction } from './api/api';
-import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC } from './styles';
+import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect } from './styles';
 import SuccessDialog from './SuccessDialog'; 
 
 function handleClick(event) {
@@ -24,7 +24,7 @@ export default function FixedTimeAuction() {
     const [price, setPrice] = useState('');
     const [endTime, setEndTime] = useState(null);
     const [minPrice, setMinPrice] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState(null); 
+    const [selectedCategory, setSelectedCategory] = useState(''); 
     const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export default function FixedTimeAuction() {
         return  title.trim() !== '' && // Titolo
                 price.trim() !== '' && // Prezzo
                 minPrice.trim() !== '' && // Soglia minima
-                selectedCategory !== null && // Categoria
+                selectedCategory !== '' && // Categoria
                 description.trim() !== '' && // Descrizione
                 endTime !== null && // Tempo limite
                 condition.trim() !== ''; // Condizione
@@ -74,7 +74,7 @@ export default function FixedTimeAuction() {
             minPrice: parseFloat(minPrice),
             endTime: formattedEndTime,
             condition,
-            category: selectedCategory?.label,
+            category: selectedCategory,
         };
 
         try {
@@ -111,7 +111,8 @@ export default function FixedTimeAuction() {
         }
     };
 
-    
+    const ConditionArray = ["Nuovo", "Usato"];
+    const CategoryLabels = categories.map(cat => cat.name);
 
     return (
         <React.Fragment>
@@ -126,33 +127,9 @@ export default function FixedTimeAuction() {
                         />
                         <div role="presentation" onClick={handleClick}>
                             <Breadcrumbs aria-label="breadcrumb">
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/"
-                                >
-                                    <HomeIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
-                                    <Typography color="disabled">Home</Typography>
-                                </Link>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/compra"
-                                >
-                                    <PaymentIcon sx={{ mr: 0.5, color: 'disabled' }} fontSize="inherit"/>
-                                    <Typography  color="disabled">Vendi</Typography>
-                                </Link>
-                                <Link
-                                    underline="hover"
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    color="inherit"
-                                    href="/compra"
-                                >
-                                    <Gavel sx={{ mr: 0.5, color: '#1E88E5' }} fontSize="inherit"/>
-                                    <Typography color="#1E88E5">Asta a tempo fisso</Typography>
-                                </Link>
+                                <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                                <BreadcrumbLink isActive={false} label={"Vendi"} Icon={PaymentIcon}/>
+                                <BreadcrumbLink isActive={true} label={"Asta a tempo fisso"} Icon={Gavel}/>
                             </Breadcrumbs>
                         </div>
                     <Typography variant="h4" sx={{ my: 2 }}>Asta a tempo fisso</Typography>
@@ -178,11 +155,11 @@ export default function FixedTimeAuction() {
                                     <AuctionTitle title="Categoria e Condizione"/>
                                     <Grid container columnSpacing={2} sx={{ justifyContent: 'left', ml: -1 }}>
                                         <Grid item key={0}>
-                                            <AuctionAutoC categories={categories} setSelectedCategory={setSelectedCategory} />
+                                            <CustomSelect  label={"Categoria"} menuItems={CategoryLabels} onValue={selectedCategory} setValue={setSelectedCategory}/>
                                         </Grid>
                                         <Grid item key={1}>
-                                            <AuctionFormC condition={condition} setCondition={setCondition} />
-                                        </Grid>
+                                            <CustomSelect  label={"Condizione"} menuItems={ConditionArray} onValue={condition} setValue={setCondition}/>
+                                        </Grid>  
                                     </Grid>
                                     <AuctionTitle title="Soglia minima"/>
                                     <AuctionPriceField name="Soglia minima" value={minPrice} onChange={(e) => setMinPrice(e.target.value)}/>

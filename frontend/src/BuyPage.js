@@ -29,23 +29,12 @@ import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { StyledBuyCard } from './styles';
+import { BreadcrumbLink, StyledBuyCard } from './styles';
 
 function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
 }
-
-// const StyledCard = styled(Card)(({ theme }) => ({
-//     maxWidth: 345,
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'space-between',
-//     transition: 'transform 0.3s ease',
-//     '&:hover': {
-//         transform: 'scale(1.05)',
-//     },
-// }));
 
 export default function BuyPage() {
     return (
@@ -54,23 +43,8 @@ export default function BuyPage() {
             <Container maxWidth="xl">
                 <Box sx={{ bgcolor: 'background.paper', minHeight: '100vh', py: 4 }}>
                     <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
-                        <Link
-                            underline="hover"
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                            color="inherit"
-                            href="/"
-                            onClick={handleClick}
-                        >
-                            <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                            Home
-                        </Link>
-                        <Typography
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                            color="#1E88E5"
-                        >
-                            <ShoppingCartIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                            Compra
-                        </Typography>
+                        <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
+                        <BreadcrumbLink isActive={true} label={"Compra"} Icon={ShoppingCartIcon}/>  
                     </Breadcrumbs>
                     <Typography variant="h4" gutterBottom>
                         Compra
