@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Box, Container, Paper, Grid, Avatar, Typography, Divider, Button, Link } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -22,15 +23,15 @@ function handleClick(event) {
 
 // Componente principale
 export default function ProfilePage() {
+  const { id } = useParams();
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userId = 3;
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const data = await getUserProfile(userId);
+        const data = await getUserProfile(id);
         setUserProfile(data);
       } catch (error) {
         setError(error.message);
@@ -40,7 +41,7 @@ export default function ProfilePage() {
     };
 
     fetchUserProfile();
-  }, [userId]);
+  }, [id]);
 
   if (loading) {
     return <p>Caricamento...</p>;

@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getAuctionDetails } from './api/api';
 import { Container, CssBaseline } from "@mui/material";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -76,9 +79,12 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function FixedDetail() {
+    const { id } = useParams();
     const [progress, setProgress] = React.useState(10);
     const [open, setOpen] = React.useState(false);
     const [price, setPrice] = React.useState('');
+    const [auction, setAuction] = useState(null);
+    const [seller, setSeller] = useState(null);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -100,6 +106,23 @@ export default function FixedDetail() {
     const handlePriceChange = (event) => {
         setPrice(event.target.value);
     };
+
+    useEffect(() => {
+        async function fetchAuctionDetails() {
+            try {
+                const data = await getAuctionDetails(id);
+                setAuction(data.auction);
+                setSeller(data.seller);
+                console.log(auction);
+                console.log(seller);
+            } catch (error) {
+                console.error('Errore nel recupero dei dettagli dell\'asta:', error);
+            }
+        }
+
+        fetchAuctionDetails();
+    }, [id]);
+
 
     return (
         <div>
@@ -175,18 +198,14 @@ export default function FixedDetail() {
                             </Slider>
                         </Box>
                         <Box sx={{ ml: 4, mt: 2, textAlign: 'left' }}>
-                            <Typography variant='h6' color="#4CAF50">In Corso</Typography>
-                            <Typography variant='h4'>Nome prodotto</Typography>
+                            <Typography variant='h6' color="#4CAF50">{auction.status === "active" ? "In Corso" : "Completata"}</Typography>
+                            <Typography variant='h4'>{auction.title}</Typography>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <Typography variant='h5' sx={{ mr: 22, mt: 1 }}>Ultima offerta: 1 €</Typography>
                                 <Typography variant='h6' color='grey'>16H:22M:06S</Typography>
                             </Box>
                             <Typography variant='h6' color="grey" sx={{ mt: 2 }}>
-                                Descrizione: Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Descrizione: {auction.description}
                             </Typography>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 3, width: '50%' }}>
                                 <FormControl sx={{ width: '100%' }}>
@@ -234,7 +253,7 @@ export default function FixedDetail() {
                                     <Box>
                                         <Typography variant="body1" color="textSecondary">Venduto da:</Typography>
                                         <Link href="#" color="primary" sx={{ fontWeight: 'bold' }}>
-                                            Alice Johnson
+                                            {seller.fullname}
                                         </Link>
                                     </Box>
                                 </Box>
@@ -245,10 +264,10 @@ export default function FixedDetail() {
                                         <strong>Tipo di Asta :</strong> A Tempo Fisso
                                     </Typography>
                                     <Typography variant="body1">
-                                        <strong>Categoria :</strong> Fotografia
+                                        <strong>Categoria :</strong> {}
                                     </Typography>
                                     <Typography variant="body1">
-                                        <strong>Spedito da :</strong> Roma, Italia
+                                        <strong>Spedito da :</strong> {seller.location}
                                     </Typography>
                                 </Box>
                             </Box>
@@ -256,9 +275,7 @@ export default function FixedDetail() {
                             {/* Descrizione Dettagliata */}
                             <Typography variant="h6" sx={{ mt: 3 }}>Descrizione Dettagliata</Typography>
                             <Typography variant="body1" color="textSecondary" sx={{ mt: 1 }}>
-                                Fotocamera vintage anni '50, autentico gioiello retrò. Design iconico, meccanica robusta e lenti di precisione.
-                                Perfetta per collezionisti e appassionati di fotografia analogica. Un pezzo unico che cattura l'essenza della
-                                fotografia d'epoca.
+                                {auction.description}
                             </Typography>
                         </Paper>
                     </Box>

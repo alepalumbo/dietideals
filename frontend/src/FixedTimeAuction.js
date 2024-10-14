@@ -79,17 +79,18 @@ export default function FixedTimeAuction() {
 
         try {
             console.log(auctionData);
-            await createFixedTimeAuction(auctionData);
+            const auctionId = await createFixedTimeAuction(auctionData);
             setOpenSuccessDialog(true);
+            handleCloseSuccessDialog(auctionId);
         } catch (error) {
             console.error('Errore nella creazione dell\'asta:', error);
         }
     };
 
 
-    const handleCloseSuccessDialog = () => {
+    const handleCloseSuccessDialog = (auctionId) => {
         setOpenSuccessDialog(false);
-        navigate('/fixeddetail');
+        navigate(`/fixeddetail/${auctionId}}`);
     };
 
     const handleDateChange = (date) => {
