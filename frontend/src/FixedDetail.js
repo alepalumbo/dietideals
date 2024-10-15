@@ -25,7 +25,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import AlertDialogSlide from './AlertDialogSlide';
-import { BreadcrumbLink } from './styles';
+import { BreadcrumbLink, getStatusDetails } from './styles';
 
 
 function handleClick(event) {
@@ -129,6 +129,8 @@ export default function FixedDetail() {
         return <div>Caricamento in corso...</div>;
     }
 
+    const { statusText, statusColor } = getStatusDetails(auction.status);
+
     return (
         <div>
             <CssBaseline />
@@ -173,7 +175,7 @@ export default function FixedDetail() {
                             </Slider>
                         </Box>
                         <Box sx={{ ml: 4, mt: 2, textAlign: 'left' }}>
-                            <Typography variant='h6' color="#4CAF50">{auction.status === "active" ? "In Corso" : "Completata"}</Typography>
+                            <Typography variant='h6' color={statusColor}>{statusText}</Typography>
                             <Typography variant='h4'>{auction.title}</Typography>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <Typography variant='h5' sx={{ mr: 22, mt: 1 }}>Ultima offerta: 1 €</Typography>

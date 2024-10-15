@@ -323,5 +323,16 @@ function BreadcrumbLink({ isActive, label, Icon }) {
     }
 }
 
+function getStatusDetails(status){
+    switch (status) {
+        case "active":
+            return { statusText: "In Corso", statusColor: "#4CAF50" };
+        case "completed":
+            return { statusText: "Asta conclusa", statusColor: "#808080" };
+        case "failed":
+            return { statusText: "Asta non aggiudicata", statusColor: "#821919" };
+    }
+};
 
-export { StyledCard,  AuctionTitle, AuctionField, AuctionPriceField, AuctionDatePicker, AuctionPhoto, StyledBuyCard, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect};
+
+export { StyledCard,  AuctionTitle, AuctionField, AuctionPriceField, AuctionDatePicker, AuctionPhoto, StyledBuyCard, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect, getStatusDetails};
