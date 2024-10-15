@@ -1,7 +1,6 @@
 package com.dietideals.service;
 
 import com.dietideals.model.Auction;
-import com.dietideals.model.User;
 import com.dietideals.repository.AuctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

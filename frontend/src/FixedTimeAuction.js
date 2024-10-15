@@ -90,7 +90,7 @@ export default function FixedTimeAuction() {
 
     const handleCloseSuccessDialog = (auctionId) => {
         setOpenSuccessDialog(false);
-        navigate(`/fixeddetail/${auctionId}}`);
+        navigate(`/fixeddetail/${auctionId}`);
     };
 
     const handleDateChange = (date) => {

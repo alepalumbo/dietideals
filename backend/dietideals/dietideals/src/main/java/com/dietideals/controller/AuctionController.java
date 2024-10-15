@@ -5,12 +5,11 @@ import com.dietideals.model.Auction;
 import com.dietideals.model.User;
 import com.dietideals.repository.UserRepository;
 import com.dietideals.service.AuctionService;
+import com.dietideals.service.CategoryService;
 import com.dietideals.service.UserService;
 import com.dietideals.util.AuctionFactory;
 import com.dietideals.repository.CategoryRepository;
 import com.dietideals.model.CategoryImp;
-import com.dietideals.repository.AuctionCategoryRepository;
-import com.dietideals.model.AuctionCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +38,6 @@ public class AuctionController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AuctionCategoryRepository auctionCategoryRepository;
 
     @PostMapping("/create")
     public ResponseEntity<Object> createAuction(@RequestBody AuctionRequest auctionRequest) {
@@ -53,12 +50,10 @@ public class AuctionController {
         // Factory Method per la creazione delle aste
         Auction auction = auctionFactory.createAuction(auctionRequest);
 
+        auction.setCategory(category.get());
+
         // Salva l'asta
         Auction savedAuction = auctionService.saveAuction(auction);
-
-        // Associazione dell'asta con la categoria
-        AuctionCategory auctionCategory = new AuctionCategory(savedAuction.getAuctionId(), category.get().getId());
-        auctionCategoryRepository.save(auctionCategory);
 
         return ResponseEntity.ok(savedAuction.getAuctionId());
     }

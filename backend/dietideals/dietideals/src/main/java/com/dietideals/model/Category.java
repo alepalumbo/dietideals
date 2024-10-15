@@ -2,9 +2,9 @@ package com.dietideals.model;
 
 public interface Category {
 
-    public Long getId();
+    public Long getCategory_id();
 
-    public void setId(Long id);
+    public void setCategory_id(Long category_id);
 
     public String getName();
 

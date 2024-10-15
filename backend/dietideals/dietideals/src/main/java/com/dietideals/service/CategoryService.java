@@ -16,4 +16,8 @@ public class CategoryService {
     public List<CategoryImp> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    public CategoryImp getCategoryById(Long category_id) {
+        return categoryRepository.findById(category_id).orElse(null);
+    }
 }

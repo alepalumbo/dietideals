@@ -20,6 +20,10 @@ public class Auction {
 
     private String condition;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private CategoryImp category;
+
     @Column(name = "initial_price")
     private double initialPrice;
 
@@ -146,6 +150,14 @@ public class Auction {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public CategoryImp getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryImp category) {
+        this.category = category;
     }
 }
 

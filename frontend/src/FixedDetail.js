@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAuctionDetails } from './api/api';
 import { Container, CssBaseline } from "@mui/material";
+import { useCountdown } from './Countdown';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -87,7 +88,10 @@ export default function FixedDetail() {
     const [price, setPrice] = React.useState('');
     const [auction, setAuction] = useState(null);
     const [seller, setSeller] = useState(null);
-    const [loading, setLoading] = useState(true)
+    const [category, setCategory] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const countdown = useCountdown(auction ? auction.endTime : null);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -116,7 +120,9 @@ export default function FixedDetail() {
                 const data = await getAuctionDetails(id);
                 setAuction(data.auction);
                 setSeller(data.seller);
+                
                 setLoading(false);
+                console.log(data);
             } catch (error) {
                 console.error('Errore nel recupero dei dettagli dell\'asta:', error);
             }
@@ -179,7 +185,7 @@ export default function FixedDetail() {
                             <Typography variant='h4'>{auction.title}</Typography>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <Typography variant='h5' sx={{ mr: 22, mt: 1 }}>Ultima offerta: 1 €</Typography>
-                                <Typography variant='h6' color='grey'>16H:22M:06S</Typography>
+                                <Typography variant='h6' color='grey'>{countdown}</Typography>
                             </Box>
                             <Typography variant='h6' color="grey" sx={{ mt: 2 }}>
                                 Descrizione: {auction.description}
@@ -229,7 +235,7 @@ export default function FixedDetail() {
                                     />
                                     <Box>
                                         <Typography variant="body1" color="textSecondary">Venduto da:</Typography>
-                                        <Link href="#" color="primary" sx={{ fontWeight: 'bold' }}>
+                                        <Link href={`/profilo/${seller.userId}`} color="primary" sx={{ fontWeight: 'bold' }}>
                                             {seller.fullname}
                                         </Link>
                                     </Box>
@@ -241,7 +247,7 @@ export default function FixedDetail() {
                                         <strong>Tipo di Asta :</strong> A Tempo Fisso
                                     </Typography>
                                     <Typography variant="body1">
-                                        <strong>Categoria :</strong> {}
+                                        <strong>Categoria : </strong> {auction.category.name}
                                     </Typography>
                                     <Typography variant="body1">
                                         <strong>Spedito da :</strong> {seller.location}
