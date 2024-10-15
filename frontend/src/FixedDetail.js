@@ -87,6 +87,7 @@ export default function FixedDetail() {
     const [price, setPrice] = React.useState('');
     const [auction, setAuction] = useState(null);
     const [seller, setSeller] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -115,8 +116,7 @@ export default function FixedDetail() {
                 const data = await getAuctionDetails(id);
                 setAuction(data.auction);
                 setSeller(data.seller);
-                console.log(auction);
-                console.log(seller);
+                setLoading(false);
             } catch (error) {
                 console.error('Errore nel recupero dei dettagli dell\'asta:', error);
             }
@@ -125,6 +125,9 @@ export default function FixedDetail() {
         fetchAuctionDetails();
     }, [id]);
 
+    if (loading || !auction || !seller) {
+        return <div>Caricamento in corso...</div>;
+    }
 
     return (
         <div>
