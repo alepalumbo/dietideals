@@ -1,16 +1,23 @@
 package com.dietideals.model;
 
-public interface Category {
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    public Long getCategory_id();
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@Entity
+@Table(name = "categories")
+public class Category {
 
-    public void setCategory_id(Long category_id);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long category_id;
 
-    public String getName();
+    private String name;
 
-    public void setName(String name);
-
-    public String getDescription();
-
-    public void setDescription(String description);
 }

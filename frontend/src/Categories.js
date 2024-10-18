@@ -51,7 +51,7 @@ export default function Categories() {
                     <Typography variant="h4" sx={{ my: 1 }}>
                         Categorie
                     </Typography>
-                    <Grid container spacing={12} sx={{ my: 1, justifyContent: 'center' }}>
+                    <Grid container spacing={8} columns={4} sx={{ my: 1, justifyContent: 'center' }}>
                         {categoryTypes.map((auction, index) => (
                             <Grid item key={index}>
                                 <StyledLink to={`/vendi/${auction.name.replace(/\s+/g, '-').toLowerCase()}`}>
