@@ -8,14 +8,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-//@Table(name = "auctions")
-public abstract class Auction {
+public class Auction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long auctionId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     protected User seller;
 
@@ -35,22 +34,13 @@ public abstract class Auction {
     @Column(name = "minimum_price")
     protected double minimumPrice;
 
-//    @Column(name = "decrement_interval")
-//    protected String decrementInterval; // Può essere null per "fixed_time" auctions
-//
-//    @Column(name = "decrement_amount")
-//    protected Double decrementAmount; // Può essere null per "fixed_time" auctions
-
     @Column(name = "start_time")
     protected LocalDateTime startTime;
 
-//    @Column(name = "auction_type")
-//    protected String auctionType;
-
-//    @Column(name = "end_time")
-//    protected LocalDateTime endTime; // Solo per "fixed_time" auctions
-
     protected String status;
+
+    @Column(name = "auction_images")
+    protected String auctionImages;
 }
 
 

@@ -16,8 +16,8 @@ import lombok.Setter;
 public class DutchAuction extends Auction {
 
     @Column(name = "decrement_interval")
-    protected String decrementInterval;
+    private String decrementInterval;
 
     @Column(name = "decrement_amount")
-    protected Double decrementAmount;
+    private Double decrementAmount;
 }

@@ -49,4 +49,6 @@ public class User {
     @Column(name = "member_since")
     private LocalDate memberSince;
 
+    private String urls;
+
 }
