@@ -1,6 +1,6 @@
 package com.dietideals.model.impl;
 
-import com.dietideals.model.Auction;
+import com.dietideals.model.AuctionEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "fixed_auction")
-public class FixedTimeAuction extends Auction {
+public class FixedTimeAuctionEntityEntity extends AuctionEntity {
 
     @Column(name = "end_time")
     private LocalDateTime endTime;

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public class Auction {
+public class AuctionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class Auction {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    protected User seller;
+    protected UserEntity seller;
 
     protected String title;
 
@@ -26,7 +26,7 @@ public class Auction {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
-    protected Category category;
+    protected CategoryEntity categoryEntity;
 
     @Column(name = "initial_price")
     protected double initialPrice;

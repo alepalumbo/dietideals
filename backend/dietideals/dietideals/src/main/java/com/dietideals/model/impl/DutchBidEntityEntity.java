@@ -1,6 +1,6 @@
 package com.dietideals.model.impl;
 
-import com.dietideals.model.Bid;
+import com.dietideals.model.BidEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +13,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name = "dutch_bid")
-public class DutchBid extends Bid {
+public class DutchBidEntityEntity extends BidEntity {
 
     @ManyToOne
     @JoinColumn(name = "auction_id")
-    private DutchAuction auctionId;
+    private DutchAuctionEntityEntity auctionId;
 
 }

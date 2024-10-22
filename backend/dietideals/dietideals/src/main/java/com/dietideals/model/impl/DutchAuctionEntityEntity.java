@@ -1,6 +1,6 @@
 package com.dietideals.model.impl;
 
-import com.dietideals.model.Auction;
+import com.dietideals.model.AuctionEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "dutch_auction")
-public class DutchAuction extends Auction {
+public class DutchAuctionEntityEntity extends AuctionEntity {
 
     @Column(name = "decrement_interval")
     private String decrementInterval;

@@ -8,27 +8,25 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
-@Table(name = "notification")
-public class Notification {
+public class BidEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long notificationId;
+    private Long bidId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private UserEntity userEntityId;
 
-    private String message;
+    @Column(name = "bid_amount")
+    private double bidAmount;
 
-    private Boolean read;
-
-    @Column(name = "created_at")
-    protected LocalDateTime createdAt;
+    @Column(name = "bid_time")
+    private LocalDateTime bidTime;
 
 }

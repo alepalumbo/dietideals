@@ -1,13 +1,11 @@
 package com.dietideals.model.impl;
 
-import com.dietideals.model.Bid;
+import com.dietideals.model.BidEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,10 +13,10 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "fixed_time_bid")
-public class FixedTimeBid extends Bid {
+public class FixedTimeBidEntityEntity extends BidEntity {
 
     @ManyToOne
     @JoinColumn(name = "auction_id")
-    private FixedTimeAuction auctionId;
+    private FixedTimeAuctionEntityEntity auctionId;
 
 }

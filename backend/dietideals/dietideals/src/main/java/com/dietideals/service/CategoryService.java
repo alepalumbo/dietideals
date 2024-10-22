@@ -1,15 +1,7 @@
-//package com.dietideals.service;
-//
-//import com.dietideals.model.CategoryImp;
-//import com.dietideals.repository.CategoryRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//
-//@Service
-//public class CategoryService {
-//
+package com.dietideals.service;
+
+public interface CategoryService {
+
 //    @Autowired
 //    private CategoryRepository categoryRepository;
 //
@@ -20,4 +12,4 @@
 //    public CategoryImp getCategoryById(Long category_id) {
 //        return categoryRepository.findById(category_id).orElse(null);
 //    }
-//}
+}
