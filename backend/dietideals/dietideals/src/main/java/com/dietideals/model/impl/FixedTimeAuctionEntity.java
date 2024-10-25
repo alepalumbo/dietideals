@@ -7,17 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "dutch_auction")
-public class DutchAuctionEntityEntity extends AuctionEntity {
+@Table(name = "fixed_auction")
+public class FixedTimeAuctionEntity extends AuctionEntity {
 
-    @Column(name = "decrement_interval")
-    private String decrementInterval;
-
-    @Column(name = "decrement_amount")
-    private Double decrementAmount;
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 }

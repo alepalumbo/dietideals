@@ -3,6 +3,7 @@ package com.dietideals.service.impl;
 import com.dietideals.model.UserEntity;
 import com.dietideals.repository.UserRepository;
 import com.dietideals.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,6 +13,7 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

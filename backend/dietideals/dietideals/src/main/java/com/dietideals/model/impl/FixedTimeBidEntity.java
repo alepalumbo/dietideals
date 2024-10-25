@@ -13,10 +13,10 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "fixed_time_bid")
-public class FixedTimeBidEntityEntity extends BidEntity {
+public class FixedTimeBidEntity extends BidEntity {
 
     @ManyToOne
     @JoinColumn(name = "auction_id")
-    private FixedTimeAuctionEntityEntity auctionId;
+    private FixedTimeAuctionEntity auctionId;
 
 }

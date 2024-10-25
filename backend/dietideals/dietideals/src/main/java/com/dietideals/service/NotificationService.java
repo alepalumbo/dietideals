@@ -6,9 +6,9 @@ import java.util.Optional;
 
 public interface NotificationService {
 
-//    NotificationEntity createNotification(NotificationEntity notificationEntity);
-//
-//    Optional<NotificationEntity> findOne(Long notificationId);
+    NotificationEntity createNotification(NotificationEntity notificationEntity);
+
+    Optional<NotificationEntity> findOne(Long notificationId);
 
 
 }
