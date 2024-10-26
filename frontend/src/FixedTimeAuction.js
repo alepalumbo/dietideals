@@ -5,7 +5,6 @@ import { CssBaseline, Box, Container, Breadcrumbs, Link, Typography, TextField, 
 import HomeIcon from '@mui/icons-material/Home';
 import PaymentIcon from '@mui/icons-material/Payment';
 import Gavel from '@mui/icons-material/Gavel';
-import { UploadFile } from '@mui/icons-material';
 import { getCategories, createFixedTimeAuction } from './api/api';
 import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect } from './styles';
 import SuccessDialog from './SuccessDialog'; 

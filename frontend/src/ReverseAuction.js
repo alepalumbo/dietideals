@@ -4,28 +4,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import HomeIcon from '@mui/icons-material/Home';
 import PaymentIcon from '@mui/icons-material/Payment';
 import Typography from '@mui/material/Typography';
 import Gavel from '@mui/icons-material/Gavel';
 import { Slider } from '@mui/material'
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { getCategories, createDescendingAuction } from './api/api';
 import { Grid, Paper } from '@mui/material';
-import { UploadFile } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink } from './styles';
 

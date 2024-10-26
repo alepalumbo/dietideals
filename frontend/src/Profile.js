@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Box, Container, Paper, Grid, Avatar, Typography, Divider, Button, Link } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -13,7 +12,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import PersonIcon from '@mui/icons-material/Person';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { getUserProfile } from './api/api';
-import UserProfile from './UserProfile';
 import { BreadcrumbLink } from './styles';
 
 // Componente principale

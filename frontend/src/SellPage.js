@@ -6,19 +6,15 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import HomeIcon from '@mui/icons-material/Home';
 import PaymentIcon from '@mui/icons-material/Payment';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import AddIcon from '@mui/icons-material/Add';
 import PersonIcon from '@mui/icons-material/Person';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import GavelIcon from '@mui/icons-material/Gavel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import chroma from 'chroma-js';
 import { StyledCard, BreadcrumbLink } from './styles';
 
 const MenuVoices = [
