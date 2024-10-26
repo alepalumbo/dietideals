@@ -10,11 +10,6 @@ import { getCategories, createFixedTimeAuction } from './api/api';
 import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink, CustomSelect } from './styles';
 import SuccessDialog from './SuccessDialog'; 
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 export default function FixedTimeAuction() {
     const [condition, setCondition] = useState('');
     const [categories, setCategories] = useState([]);
@@ -125,7 +120,7 @@ export default function FixedTimeAuction() {
                             handleClose={handleCloseSuccessDialog} 
                             message="Asta creata con successo"
                         />
-                        <div role="presentation" onClick={handleClick}>
+                        <div role="presentation">
                             <Breadcrumbs aria-label="breadcrumb">
                                 <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
                                 <BreadcrumbLink isActive={false} label={"Vendi"} Icon={PaymentIcon}/>

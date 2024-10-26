@@ -29,12 +29,6 @@ import { UploadFile } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { AuctionField, AuctionTitle, AuctionPriceField, AuctionDatePicker, AuctionPhoto, AuctionAutoC, AuctionFormC, BreadcrumbLink } from './styles';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
-
 const Timer = [
     {value: 2, label: '2h',},
     {value: 4, label: '4h',},
@@ -148,7 +142,7 @@ export default function ReverseAuction() {
             <Container maxWidth="xl">
                 <Box sx={{ bgcolor: 'white', height: '100%', py: 4}}>
                     <Box>
-                        <div role="presentation" onClick={handleClick}>
+                        <div role="presentation">
                         <Breadcrumbs aria-label="breadcrumb">
                             <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
                             <BreadcrumbLink isActive={false} label={"Vendi"} Icon={PaymentIcon}/>

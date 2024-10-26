@@ -9,11 +9,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import GavelIcon from '@mui/icons-material/Gavel';
 import { StyledCard, BreadcrumbLink } from './styles';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 const StyledLink = styled(RouterLink)({
      textDecoration: 'none',
 });
@@ -42,7 +37,7 @@ export default function Categories() {
             <CssBaseline />
             <Container maxWidth="xl">
                 <Box sx={{ minHeight: '100vh', py: 4 }}>
-                    <div role="presentation" onClick={handleClick}>
+                    <div role="presentation">
                             <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
                                 <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
                                 <BreadcrumbLink isActive={true} label={"Categorie"} Icon={FilterListIcon}/>                             

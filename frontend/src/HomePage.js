@@ -12,11 +12,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { StyledCard, BreadcrumbLink  } from './styles';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 const settings = {
     dots: true,
     infinite: true,
@@ -53,7 +48,7 @@ export default function HomePage() {
             <CssBaseline />
             <Container maxWidth="xl">
                 <Box sx={{ py: 4}}>
-                    <div role="presentation" onClick={handleClick}>
+                    <div role="presentation">
                         <Breadcrumbs aria-label="breadcrumb">
                             <BreadcrumbLink isActive={true} label={"Home"} Icon={HomeIcon}/>
                         </Breadcrumbs>

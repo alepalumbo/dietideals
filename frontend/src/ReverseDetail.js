@@ -20,12 +20,6 @@ import Button from '@mui/material/Button';
 import AlertDialogSlide from './AlertDialogSlide';
 import { BreadcrumbLink } from './styles';
 
-
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 const settings = {
     dots: true,
     infinite: true,
@@ -104,7 +98,7 @@ export default function ReverseDetail() {
             <CssBaseline />
             <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ minHeight: '150vh', py: 4, width: '100%' }}>
-                    <div role="presentation" onClick={handleClick}>
+                    <div role="presentation">
                         <Breadcrumbs aria-label="breadcrumb">
                             <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
                             <BreadcrumbLink isActive={false} label={"Compra"} Icon={ShoppingCartIcon}/>

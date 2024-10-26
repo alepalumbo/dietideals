@@ -21,11 +21,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import chroma from 'chroma-js';
 import { StyledCard, BreadcrumbLink } from './styles';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 const MenuVoices = [
     { name: 'Asta a tempo fisso', caption: 'Crea una nuova asta e metti in vendita il tuo prodotto/servizio', icon: <AddIcon />, backgroundColor: '#1E88E5' },
     { name: 'Asta al ribasso', caption: 'Crea una nuova asta e metti in vendita il tuo prodotto/servizio', icon: <FilterListIcon />, backgroundColor: '#00ACC1' },
@@ -45,7 +40,7 @@ export default function SellPage() {
             <CssBaseline />
             <Container maxWidth="xl">
                 <Box sx={{ minHeight: '100vh', py: 4 }}>
-                <div role="presentation" onClick={handleClick}>                            
+                <div role="presentation">                            
                             <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
                                 <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
                                 <BreadcrumbLink isActive={true} label={"Vendi"} Icon={PaymentIcon}/> 

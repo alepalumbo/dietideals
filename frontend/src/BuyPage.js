@@ -31,11 +31,6 @@ import Stack from '@mui/material/Stack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { BreadcrumbLink, StyledBuyCard } from './styles';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 export default function BuyPage() {
     return (
         <div>

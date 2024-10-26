@@ -16,12 +16,6 @@ import { getUserProfile } from './api/api';
 import UserProfile from './UserProfile';
 import { BreadcrumbLink } from './styles';
 
-
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
-
 // Componente principale
 export default function ProfilePage() {
   const { id } = useParams();
@@ -57,7 +51,7 @@ export default function ProfilePage() {
   return (
     <Container maxWidth="xl">
       <Box sx={{ bgcolor: 'background.paper', minHeight: '100vh', py: 4 }}>
-        <div role="presentation" onClick={handleClick}>
+        <div role="presentation">
           <Breadcrumbs aria-label="breadcrumb">
             <BreadcrumbLink isActive={false} label={"Home"} Icon={HomeIcon}/>
             <BreadcrumbLink isActive={true} label={"Profilo"} Icon={PersonIcon}/>
